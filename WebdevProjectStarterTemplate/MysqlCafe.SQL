@@ -1,6 +1,8 @@
-CREATE DATABASE IF NOT EXISTS WebdevProject;
+DROP DATABASE IF EXISTS webdevproject;
 
-USE WebdevProject;
+CREATE DATABASE IF NOT EXISTS webdevproject;
+
+USE webdevproject;
 
 DROP TABLE IF EXISTS Category, Product CASCADE ;
 
