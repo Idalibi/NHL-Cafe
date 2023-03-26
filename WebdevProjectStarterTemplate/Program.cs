@@ -19,7 +19,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+//services.addsession();
+//addsession moet waar?
+//app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
