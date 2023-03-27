@@ -2,9 +2,10 @@
 @model registerModel
 
 <form method="post">
+    Naam:<input asp-for="@Model.user.UserName">
+    wachtwoord:<input asp-for="@Model.user.Password">
 
 
 
-
-
+    <input type="submit" value="register">
 </form>
