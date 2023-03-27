@@ -22,6 +22,23 @@ CREATE TABLE Product
 
     CONSTRAINT FK_ProductCategory FOREIGN KEY (CategoryId) REFERENCES Category (CategoryId) ON DELETE CASCADE 
 );
+CREATE TABLE RTable
+(
+    RTableId     INTEGER         AUTO_INCREMENT PRIMARY KEY,
+    Name        VARCHAR(32)      NOT NULL
+);
+CREATE TABLE OrderLIne
+(
+    ProductId   INTEGER,
+    RTableId    INTEGER,
+    Amount      INTEGER,
+    AmountPaid  INTEGER,
+
+    PRIMARY KEY (ProductId, RTableId),
+    FOREIGN KEY (ProductId) REFERENCES Product(ProductId) ON DELETE CASCADE,
+    FOREIGN KEY (RTableId) REFERENCES RTable (RTableId) ON DELETE CASCADE
+);
+INSERT INTO RTable (Name) VALUES ('TAFEL 1'),('TAFEL 2'),('TAFEL 3'),('TAFEL 4');
 
 INSERT INTO Category (Name) VALUES ('Frisdranken');
 INSERT INTO Category (Name) VALUES ('Bier');
