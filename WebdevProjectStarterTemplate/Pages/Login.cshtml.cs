@@ -14,7 +14,7 @@ public class loginModel : PageModel
         sessionID = HttpContext.Session.GetString("userID");
         if (sessionID != null)
         {
-            return new RedirectResult(nameof(overviewModel));
+            return Redirect("AccountOverview");
         }
         return Page();
     }
