@@ -1,4 +1,11 @@
 @page
 @model overviewModel
 
-@Model.user.UserName
+Welkom, @Model.user.UserName!
+
+@{
+    foreach (var x in @Model.tables)
+    {
+        <button formmethod="post" asp-page-handler="Table">@x.Name</button>        
+    }
+}

@@ -12,6 +12,7 @@ public class overviewModel : PageModel
 {
     public CafeUser user { get; set; }
     public string id { get; set; }
+    public List<Table> tables { get; set; }
     public IActionResult OnGet()
     {
         id = HttpContext.Session.GetString("userID");
@@ -23,7 +24,13 @@ public class overviewModel : PageModel
 
         user = StaticUserRepo.GetUser(guid);
 
+        tables = new MiscRepo().GetTables();
 
         return Page();
+    }
+    public void TableSelector(int RTableId)
+    {
+        Response.Cookies.Delete("RTableId");
+        Response.Cookies.Append("RTableId", RTableId.ToString());
     }
 }
