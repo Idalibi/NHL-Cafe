@@ -4,6 +4,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddMemoryCache();
+builder.Services.AddMvc();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -19,9 +22,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-//services.addsession();
-//addsession moet waar?
-//app.UseSession();
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
