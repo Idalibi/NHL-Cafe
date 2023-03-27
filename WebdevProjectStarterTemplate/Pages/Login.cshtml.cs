@@ -1,14 +1,28 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebdevProjectStarterTemplate.Models;
 using WebdevProjectStarterTemplate.Repositories;
 namespace WebdevProjectStarterTemplate.Pages;
-
+[BindProperties]
 public class loginModel : PageModel
 {
-            public string UserName;
-            public string Password;
-            public Guid userid;
-            public void OnGet()
-            {
-                StaticUserRepo.GetUser(userid);
-            }
+    public CafeUser loginuser { get; set; }
+    public string sessionID { get; set; }
+    public IActionResult OnGet()
+    {
+        sessionID = HttpContext.Session.GetString("userID");
+        if (sessionID != null)
+        {
+            return new RedirectResult(nameof(overviewModel));
+        }
+        return Page();
+    }
+    public IActionResult OnPost()
+    {
+        loginuser = StaticUserRepo.GetUser(loginuser.UserName, loginuser.Password);
+        if(loginuser != null)
+            HttpContext.Session.SetString("userID", loginuser.UniqueGuid.ToString());
+        return Redirect("AccountOverview");
+    }
 }

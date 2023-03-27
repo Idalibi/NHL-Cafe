@@ -7,7 +7,8 @@ namespace WebdevProjectStarterTemplate.Repositories
 {
     public static class StaticUserRepo
     {
-        static List<CafeUser> _users = new List<CafeUser>();
+        static List<CafeUser> _users = new List<CafeUser>
+        { new CafeUser{Password="test", UserName="Rik", UniqueGuid=default } };
 
         public enum AddUserResult
         {
