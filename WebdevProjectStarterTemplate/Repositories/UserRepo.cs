@@ -30,7 +30,7 @@ namespace WebdevProjectStarterTemplate.Repositories
         }
         public CafeUser GetUser(int id)//ophalen van gegevens tijdens sessie
         {
-            string sql = @"SELECT * WHERE UniqueGuid = @ID";
+            string sql = @"SELECT * FROM CafeUser WHERE UniqueGuid = @ID";
             var connection = GetConnection();
             var returnuser = connection.QuerySingleOrDefault<CafeUser>(sql, new {ID =id});
             return returnuser;
