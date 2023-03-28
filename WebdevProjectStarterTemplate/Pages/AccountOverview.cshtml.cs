@@ -36,7 +36,7 @@ public class overviewModel : PageModel
         RTableId = Request.Form["tableselect"]; //weet niet waarom, maar anders bind hij niet
         TableSelector(Convert.ToInt32(RTableId));
         OnGet();            //TODO misschien nog iets met [viewdata] om te laten zien dat je daadwerkelijk een tafel selecteert // OnGet omdat hij anders tables kwijtraakt
-        return Page();
+        return Page();      //of anders focus op de al geselecteerde tafel
     }
     public void TableSelector(int RTableId)
     {
