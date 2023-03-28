@@ -12,7 +12,7 @@ namespace WebdevProjectStarterTemplate.Repositories
             return new DbUtils().GetDbConnection();
         }
 
-        public CafeUser AddUser(CafeUser CafeUser) //register/sign up
+        public CafeUser AddUser(CafeUser CafeUser) //register/sign-up
         {
             string sql = @" INSERT INTO CafeUser (UserName, Password) VALUES (@UserName, @Password);
                             SELECT * FROM CafeUser WHERE UniqueGuid = LAST_INSERT_ID()";
