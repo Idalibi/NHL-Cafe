@@ -3,12 +3,15 @@
 
 Welkom, @Model.user.UserName!
 
+Selecteer een tafel:
+<form method="post">
 @{
     foreach (var x in @Model.tables)
     {
-        <button formmethod="post" asp-page-handler="Table">@x.Name</button>        
+            @x.Name <input type="radio" id="@x.RTableId"value="@x.RTableId" name="tableselect" asp-for="RTableId">
+
+            <br />
     }
 }
-<form>
-<input type="range" min="0" max="50">
+<input type="submit" value="selecteer"/>
 </form>
