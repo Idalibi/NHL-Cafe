@@ -20,9 +20,9 @@ public class overviewModel : PageModel
         {
             return new RedirectResult("login");
         }
-        Guid guid = Guid.Parse(id);
+        //Guid guid = Guid.Parse(id);
 
-        user = StaticUserRepo.GetUser(guid);
+        user = new UserRepo().GetUser(Convert.ToInt32(id));
 
         tables = new MiscRepo().GetTables();
 

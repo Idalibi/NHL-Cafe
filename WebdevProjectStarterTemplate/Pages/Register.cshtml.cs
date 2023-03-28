@@ -20,8 +20,10 @@ public class registerModel : PageModel
     }
     public IActionResult OnPost()
     {
-        StaticUserRepo.AddUser(user);
-        user = StaticUserRepo.GetUser(user.UserName, user.Password);
+        user = new UserRepo().AddUser(user);
+        //checken of hij faalt
+
+        //oude code//user = StaticUserRepo.GetUser(user.UserName, user.Password);
         HttpContext.Session.SetString("userID", user.UniqueGuid.ToString());
         id = HttpContext.Session.GetString("userID");
         if (id != null)

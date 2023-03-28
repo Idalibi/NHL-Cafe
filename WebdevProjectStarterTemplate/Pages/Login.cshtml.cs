@@ -20,7 +20,7 @@ public class loginModel : PageModel
     }
     public IActionResult OnPost()
     {
-        loginuser = StaticUserRepo.GetUser(loginuser.UserName, loginuser.Password);
+        loginuser = new UserRepo().GetUser(loginuser);
         if(loginuser != null)
             HttpContext.Session.SetString("userID", loginuser.UniqueGuid.ToString());
         return Redirect("AccountOverview");
