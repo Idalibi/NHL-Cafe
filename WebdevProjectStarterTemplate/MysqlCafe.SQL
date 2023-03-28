@@ -6,7 +6,12 @@ USE webdevproject;
 
 DROP TABLE IF EXISTS Category, Product CASCADE ;
 
-
+CREATE TABLE CafeUser
+(
+    UniqueGuid  int             AUTO_INCREMENT PRIMARY KEY,
+    UserName    varchar(64)     NOT NULL UNIQUE,
+    Password    int             NOT NULL
+);
 CREATE TABLE Category
 (
     CategoryId  integer AUTO_INCREMENT PRIMARY KEY,

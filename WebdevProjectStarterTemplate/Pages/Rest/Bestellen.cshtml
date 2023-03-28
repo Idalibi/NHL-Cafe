@@ -1,5 +1,38 @@
 ﻿@page
-@model WebdevProjectStarterTemplate.Pages.Rest.BestellenModel
+@model WebdevProjectStarterTemplate.Pages.BestellenModel
 @{
 }
 de geselecteerde tafel is @Model.RTableId
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                </thead>
+                <tbody>
+                    @foreach (var category in @Model.CategoriesWithProduct)
+                    {
+                        <tr>
+                            <td>@category.Name</td>
+                        </tr>
+                    }
+                </tbody>
+        </table>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>product</td>
+                        <td>amount</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+</div>
