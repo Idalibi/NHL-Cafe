@@ -17,4 +17,10 @@ public class BestellenModel : PageModel
         RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
         CategoriesWithProduct = new CategoryRepository().GetCategoriesWithProducts();
     }
+    public IActionResult OnPost()
+    {
+        // TODO Request.Form doorlopen vanwege dynamisch gemaakte input
+        // waarschijnlijk met meerdere queries, want ik heb flauw idee hoe je een lijst doorstuurt met dapper :/
+        return Redirect("Rest/Overzicht");
+    }
 }
