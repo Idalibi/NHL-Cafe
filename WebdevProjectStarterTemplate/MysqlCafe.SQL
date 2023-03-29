@@ -37,7 +37,7 @@ CREATE TABLE OrderLIne
     ProductId   INTEGER,
     RTableId    INTEGER,
     Amount      INTEGER,
-    AmountPaid  INTEGER,
+    AmountPaid  INTEGER DEFAULT 0,
 
     PRIMARY KEY (ProductId, RTableId),
     FOREIGN KEY (ProductId) REFERENCES Product(ProductId) ON DELETE CASCADE,

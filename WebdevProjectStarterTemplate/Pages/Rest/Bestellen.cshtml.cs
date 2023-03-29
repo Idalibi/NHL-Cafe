@@ -20,7 +20,7 @@ public class BestellenModel : PageModel
     public IActionResult OnPost()
     {
         // TODO Request.Form doorlopen vanwege dynamisch gemaakte input
-        // waarschijnlijk met meerdere queries, want ik heb flauw idee hoe je een lijst doorstuurt met dapper :/
+        // waarschijnlijk met meerdere queries, want ik heb geen flauw idee hoe je een lijst doorstuurt met dapper :/
         return Redirect("Rest/Overzicht");
     }
 }
