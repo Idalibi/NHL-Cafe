@@ -14,7 +14,7 @@ de geselecteerde tafel is @Model.RTableId
                     @foreach (var category in @Model.CategoriesWithProduct)
                     {
                         <tr>
-                            <td>@category.Name</td>
+                            <td onclick="showCategory('@category.Name')">@category.Name</td>
                         </tr>
                     }
                 </tbody>
@@ -22,17 +22,67 @@ de geselecteerde tafel is @Model.RTableId
         </div>
         <div class="col">
 
+            <table class="table table-striped">
+                <thead>
+
+                </thead>
+                <tbody>
+                @foreach (var category in @Model.CategoriesWithProduct)
+                {
+                    foreach (var product in category.Products)
+                    {
+                        <tr class="productsview @category.Name">
+                            <td >
+                            @product.Name 
+                            </td>
+                            <td>
+                                    <button onclick="addRow('@product.Name')">+</button>
+                            </td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
         </div>
         <div class="col-6">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <td>product</td>
-                        <td>amount</td>
+                        <td><b>product</b></td>
+                        <td><b>amount</b></td>
                     </tr>
                 </thead>
+                <tbody id="ordertable">
+
+                </tbody>
             </table>
         </div>
 
     </div>
 </div>
+<script>
+
+    
+    function addRow(product){
+        var newRow = document.createElement("tr");
+        newRow.innerHTML = `<td>${product}</td><td><button>-</button>1<button>+</button></td>`;
+        document.getElementById("ordertable").appendChild(newRow);
+    }
+    function hideAllProducts(){
+        var elements = document.getElementsByClassName("productsview");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].style.display = "none";
+        }
+    }
+    function showCategory(id){
+        hideAllProducts();
+        var elements = document.getElementsByClassName(id)
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].style.display = "flex";
+        }
+
+
+    }
+    hideAllProducts();
+
+</script>
