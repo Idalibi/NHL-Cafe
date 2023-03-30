@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections;
@@ -24,6 +25,10 @@ public class BestellenModel : PageModel
         var rows = Request.Form;
         foreach (var row in rows)
         {
+            if (row.Key.Equals("__RequestVerificationToken"))
+            {
+                break;
+            }
             if (iterator % 2 == 1)
             {
                 Console.WriteLine(row.Value.ToString());
@@ -37,7 +42,9 @@ public class BestellenModel : PageModel
             }
             iterator++;
         }
-        //omdat het formulier dynamisch is aangemaakt doorloop hij de request.form
+        //omdat het formulier dynamisch is aangemaakt doorloopt hij de request.form
+        //uiteindelijk komt er een request verification of zoiets en die wordt gefilterd
+        //TODO checken of een tafel/productcombinatie al bestaat
         return Redirect("/Rest/Overzicht");
     }
 }
