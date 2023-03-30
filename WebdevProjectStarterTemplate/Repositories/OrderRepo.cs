@@ -14,6 +14,9 @@ namespace WebdevProjectStarterTemplate.Repositories
 
         public void AddOrder(OrderLine order)
         {
+            using var connection = GetConnection();
+            var sql = @"insert into OrderLine (RTableId, ProductId, Amount) values (@RTableId, @ProductId, @Amount);";
+            connection.Execute(sql, order);
 
         }
         public void UpdateOrder(int AmountPaid)
@@ -26,7 +29,7 @@ namespace WebdevProjectStarterTemplate.Repositories
         }
         public List<OrderLine> GetOrders(int RTableId)
         {
-            var connection = GetConnection();
+            using var connection = GetConnection();
             var sql = @"SELECT * FROM OrderLine WHERE RtableId = @RTableId";
             var orders = connection.Query<OrderLine>(sql, new {RTableId = RTableId });
             return orders.ToList();

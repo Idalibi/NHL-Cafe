@@ -9,18 +9,35 @@ namespace WebdevProjectStarterTemplate.Pages;
 [BindProperties]
 public class BestellenModel : PageModel
 {
-    public int RTableId { get; set; }
+    public OrderLine order = new();
     public IEnumerable<Category> CategoriesWithProduct { get; set; }
 
     public void OnGet()
     {
-        RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
+        order.RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
         CategoriesWithProduct = new CategoryRepository().GetCategoriesWithProducts();
     }
     public IActionResult OnPost()
     {
-        // TODO Request.Form doorlopen vanwege dynamisch gemaakte input
-        // waarschijnlijk met meerdere queries, want ik heb geen flauw idee hoe je een lijst doorstuurt met dapper :/
+        order.RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
+        int iterator = 1;
+        var rows = Request.Form;
+        foreach (var row in rows)
+        {
+            if (iterator % 2 == 1)
+            {
+                Console.WriteLine(row.Value.ToString());
+                order.ProductId = Convert.ToInt32(row.Value);
+            }
+
+            else
+            {
+                order.Amount = Convert.ToInt32(row.Value);
+                new OrderRepo().AddOrder(order);
+            }
+            iterator++;
+        }
+        //omdat het formulier dynamisch is aangemaakt doorloop hij de request.form
         return Redirect("/Rest/Overzicht");
     }
 }
