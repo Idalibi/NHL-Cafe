@@ -12,7 +12,7 @@ namespace WebdevProjectStarterTemplate.Repositories
             return new DbUtils().GetDbConnection();
         }
 
-        public void AddOrder(int RTableId, int ProductId, int Amount)
+        public void AddOrder(OrderLine order)
         {
 
         }
@@ -26,8 +26,10 @@ namespace WebdevProjectStarterTemplate.Repositories
         }
         public List<OrderLine> GetOrders(int RTableId)
         {
-
-            return null;
+            var connection = GetConnection();
+            var sql = @"SELECT * FROM OrderLine WHERE RtableId = @RTableId";
+            var orders = connection.Query<OrderLine>(sql, new {RTableId = RTableId });
+            return orders.ToList();
         }
         
     }
