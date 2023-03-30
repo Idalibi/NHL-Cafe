@@ -14,6 +14,20 @@ de geselecteerde tafel is @Model.RTableId
         </tr>
     </thead>
     <tbody>
+            @{
+            decimal alles = 0;
+            foreach(var order in Model.orders)
+            {
+                alles += order.Total;
+                <tr>
+                    <td>@order.Name</td>
+                    <td>@order.Amount</td>
+                    <td>@order.Price</td>
+                    <td>@order.Total</td>
+                </tr>
+            }
+            }
+
     </tbody>
     <tfoot>
         <tr>

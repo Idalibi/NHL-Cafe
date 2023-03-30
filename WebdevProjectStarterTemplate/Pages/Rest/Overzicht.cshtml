@@ -18,7 +18,7 @@ de geselecteerde tafel is @Model.RTableId
             decimal alles = 0;
             foreach(var order in Model.orders)
             {
-                alles += order.Price;
+                alles += order.Total;
                 <tr>
                     <td>@order.Name</td>
                     <td>@order.Amount</td>

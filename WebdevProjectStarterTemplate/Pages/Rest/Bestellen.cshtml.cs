@@ -31,20 +31,21 @@ public class BestellenModel : PageModel
             }
             if (iterator % 2 == 1)
             {
-      //          Console.WriteLine(row.Value.ToString());
                 order.ProductId = Convert.ToInt32(row.Value);
             }
 
             else
             {
                 order.Amount = Convert.ToInt32(row.Value);
-                new OrderRepo().AddOrder(order);
+                try
+                {
+                    new OrderRepo().AddOrder(order);
+                } catch { continue; } //TODO inplaats van continue, een orderUpdate()
             }
             iterator++;
         }
         //omdat het formulier dynamisch is aangemaakt doorloopt hij de request.form
         //uiteindelijk komt er een request verification of zoiets en die wordt gefilterd
-        //TODO checken of een tafel/productcombinatie al bestaat
         return Redirect("/Rest/Overzicht");
     }
 }
