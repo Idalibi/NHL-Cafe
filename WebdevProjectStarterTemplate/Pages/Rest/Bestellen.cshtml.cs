@@ -21,6 +21,6 @@ public class BestellenModel : PageModel
     {
         // TODO Request.Form doorlopen vanwege dynamisch gemaakte input
         // waarschijnlijk met meerdere queries, want ik heb geen flauw idee hoe je een lijst doorstuurt met dapper :/
-        return Redirect("Rest/Overzicht");
+        return Redirect("/Rest/Overzicht");
     }
 }
