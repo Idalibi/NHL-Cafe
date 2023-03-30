@@ -30,8 +30,8 @@ namespace WebdevProjectStarterTemplate.Repositories
         public List<OrderLine> GetOrders(int RTableId)
         {
             using var connection = GetConnection();
-            var sql = @"SELECT * FROM OrderLine WHERE RtableId = @RTableId";
-            var orders = connection.Query<OrderLine>(sql, new {RTableId = RTableId });
+            var sql = @"select Amount, AmountPaid, Price, (Price*Amount) as Total, p.Name as Name from orderline o join product p on o.ProductId = p.ProductId WHERE RtableId = @RTableId";
+            var orders = connection.Query<OrderLine>(sql, new { RTableId });
             return orders.ToList();
         }
         

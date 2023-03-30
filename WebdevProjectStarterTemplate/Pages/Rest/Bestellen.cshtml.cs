@@ -31,7 +31,7 @@ public class BestellenModel : PageModel
             }
             if (iterator % 2 == 1)
             {
-                Console.WriteLine(row.Value.ToString());
+      //          Console.WriteLine(row.Value.ToString());
                 order.ProductId = Convert.ToInt32(row.Value);
             }
 
