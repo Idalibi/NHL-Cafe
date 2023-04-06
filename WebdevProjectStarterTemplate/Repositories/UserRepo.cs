@@ -17,7 +17,7 @@ namespace WebdevProjectStarterTemplate.Repositories
             string sql = @" INSERT INTO CafeUser (UserName, Password) VALUES (@UserName, @Password);
                             SELECT * FROM CafeUser WHERE UniqueGuid = LAST_INSERT_ID()";
             var connection = GetConnection();
-            var returnuser = connection.QuerySingleOrDefault<CafeUser>(sql, CafeUser);//zou moeten falen(of defaulten?) als naam niet uniek
+            var returnuser = connection.QuerySingleOrDefault<CafeUser>(sql, CafeUser);//zou moeten falen als naam niet uniek
             return returnuser;
         }
 
@@ -30,9 +30,9 @@ namespace WebdevProjectStarterTemplate.Repositories
         }
         public CafeUser GetUser(int id)//ophalen van gegevens tijdens sessie
         {
-            string sql = @"SELECT * FROM CafeUser WHERE UniqueGuid = @ID";
+            string sql = @"SELECT * FROM CafeUser WHERE UniqueGuid = @id";
             var connection = GetConnection();
-            var returnuser = connection.QuerySingleOrDefault<CafeUser>(sql, new {ID =id});
+            var returnuser = connection.QuerySingleOrDefault<CafeUser>(sql, new { id });
             return returnuser;
         }
     }
