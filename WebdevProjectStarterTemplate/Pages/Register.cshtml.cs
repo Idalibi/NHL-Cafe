@@ -7,7 +7,7 @@ namespace WebdevProjectStarterTemplate.Pages;
 [BindProperties]
 public class registerModel : PageModel
 {
-    public CafeUser user { get; set; }
+    public CafeUser user { get; set; } = null!;
     public string id;
     public IActionResult OnGet()
     {
@@ -20,6 +20,11 @@ public class registerModel : PageModel
     }
     public IActionResult OnPost()
     {
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
         user = new UserRepo().AddUser(user);
         //checken of hij faalt
 

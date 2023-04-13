@@ -1,27 +1,29 @@
 @page
 @model registerModel
 
-<form>
+<form method="post">
     <div class="form-group">
-        <label>Naam</label>
+        <label asp-for="@Model.user.UserName" >Naam</label>
         <input asp-for="@Model.user.UserName" class="form-control" placeholder="Gebruikersnaam" />
-        <span class="invalid-feedback" asp-validation-for="@Model.user.UserName"></span>
+        <span asp-validation-for="@Model.user.UserName"></span>
     </div>
     <div class="form-group">
-        <label>Wachtwoord</label>
-        <input asp-for="@Model.user.Password" class="form-control" placeholder="Wachtwoord" />
-        <span class="invalid-feedback" asp-validation-for="@Model.user.Password"></span>
+        <label asp-for="@Model.user.Password">Wachtwoord</label>
+        <input asp-for="@Model.user.Password" class="form-control" placeholder="Wachtwoord" type="password"/>
+        <span asp-validation-for="@Model.user.Password"></span>
     </div>
-    <div class="form-group">
+   @* <div class="form-group">
         <label>Herhaal wachtwoord</label>
-        <input class="form-control" placeholder="Herhaal wachtwoord" />
-        <span class="invalid-feedback" asp-validation-for="@Model.user.UserName"></span>
-    </div>
+        <input class="form-control" placeholder="Herhaal wachtwoord" type="password" />
+        <span asp-validation-for="@Model.user.Password"></span>
+    </div>*@
     <div class="form-group">
         <label>eMail</label>
         <input class="form-control" placeholder="email@email.com" asp-for="@Model.user.Email"/>
-        <span class="invalid-feedback" asp-validation-for="@Model.user.Email"></span>
+        <span asp-validation-for="@Model.user.Email"></span>
     </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
 
 
 </form>

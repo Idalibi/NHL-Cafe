@@ -14,6 +14,6 @@ public class CafeUser
     [Required, EmailAddress]
     public string Email { get; set; }
 
-    public string Location { get; set; }
+    public string Location { get; set; } = "";
     public DateTime Date { get; set; }
 }
