@@ -34,10 +34,18 @@ namespace WebdevProjectStarterTemplate.Repositories
         public List<OrderLine> GetOrders(int RTableId)
         {
             using var connection = GetConnection();
-            var sql = @"select Amount, AmountPaid, Price, (Price*Amount) as Total, p.Name as Name, p.ProductId from orderline o 
+            var sql = @"select Amount, AmountPaid, Price, (Price*(Amount-AmountPaid)) as Total, p.Name as Name, p.ProductId from orderline o 
                         join product p on o.ProductId = p.ProductId WHERE RtableId = @RTableId";
             var orders = connection.Query<OrderLine>(sql, new { RTableId });
             return orders.ToList();
+        }
+        public void Betaal(OrderLine order)
+        {
+            using var connection = GetConnection();
+            var sql = @"UPDATE OrderLine
+                        SET AmountPaid = @AmountPaid
+                        WHERE RtableId = @RTableId && ProductId = @ProductId;";
+            connection.Execute(sql, order);
         }
         
     }

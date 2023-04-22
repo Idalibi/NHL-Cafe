@@ -15,5 +15,19 @@ namespace WebdevProjectStarterTemplate.Pages.Rest
             RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
             orders = new OrderRepo().GetOrders(RTableId);
         }
+        public IActionResult OnPost()
+        {
+            RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
+
+            orders = new OrderRepo().GetOrders(RTableId);
+
+            foreach (var order in orders)
+            {
+                order.RTableId = RTableId;
+                order.AmountPaid = order.Amount;
+                new OrderRepo().Betaal(order);
+            }
+            return new RedirectResult("Alles betalen");
+        }
     }
 }
