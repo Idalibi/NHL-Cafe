@@ -4,27 +4,37 @@
 }
 <h1><b>Per persoon betalen</b></h1>
 de geselecteerde tafel is @Model.RTableId
+<form method="post">
 <table class="table table-striped">
     <thead>
         <tr>
             <td><b>product</b></td>
-            <td><b>hoeveelheid</b></td>
+            <td><b>aantal</b></td>
             <td><b>prijs</b></td>
             <td><b>totaal</b></td>
         </tr>
     </thead>
     <tbody>
             @{
-            decimal alles = 0;
+                int iterator = 0;
+                decimal alles = 0;
             foreach(var order in Model.orders)
             {
+                var ProductName = "product[" + iterator + "]";
+                var AmountName = "amount[" + iterator + "]";
+
                 alles += order.Total;
                 <tr>
                     <td>@order.Name</td>
-                    <td>@order.Amount</td>
+                    <td>
+                        <button type="button" onclick="decrease('@order.Name')">-</button><div class="@order.Name">0</div><button type="button" onclick="increase('@order.Name')">+</button> van de @(@order.Amount-@order.AmountPaid)
+                        <input type="hidden" value="0" class="@order.Name" name="@ProductName">
+                        <input type="hidden" value="@order.ProductId" name="@AmountName">
+                    </td>
                     <td>@order.Price</td>
                     <td>@order.Total</td>
                 </tr>
+                iterator++;
             }
             }
 
@@ -38,3 +48,25 @@ de geselecteerde tafel is @Model.RTableId
         </tr>
     </tfoot>
 </table>
+<button>betaal</button>
+</form>
+
+<script>
+    function increase(id){
+        var elements = document.getElementsByClassName(id);
+        for (var i = 0; i < elements.length; i=+2) {
+            elements[i].innerHTML = Number(elements[i].innerHTML)+1;
+            elements[i+1].value = Number(elements[i+1].value) + 1;
+            //elements[i].style.display = "none";
+        }
+    }
+
+    function decrease(id){
+        var elements = document.getElementsByClassName(id);
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].innerHTML = Number(elements[i].innerHTML)-1;
+            elements[i+1].value = Number(elements[i+1].value) - 1;
+        }
+    }
+
+</script>

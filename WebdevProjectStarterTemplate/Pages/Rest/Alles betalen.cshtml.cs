@@ -25,7 +25,7 @@ namespace WebdevProjectStarterTemplate.Pages.Rest
             {
                 order.RTableId = RTableId;
                 order.AmountPaid = order.Amount;
-                new OrderRepo().Betaal(order);
+                new OrderRepo().BetaalAlles(order);
             }
             return new RedirectResult("Alles betalen");
         }

@@ -43,10 +43,18 @@ namespace WebdevProjectStarterTemplate.Repositories
         {
             using var connection = GetConnection();
             var sql = @"UPDATE OrderLine
+                        SET AmountPaid = (@AmountPaid+AmountPaid)
+                        WHERE RtableId = @RTableId && ProductId = @ProductId;";
+            connection.Execute(sql, order);
+        }
+        public void BetaalAlles(OrderLine order)
+        {
+            using var connection = GetConnection();
+            var sql = @"UPDATE OrderLine
                         SET AmountPaid = @AmountPaid
                         WHERE RtableId = @RTableId && ProductId = @ProductId;";
             connection.Execute(sql, order);
         }
-        
+
     }
 }

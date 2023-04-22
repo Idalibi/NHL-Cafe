@@ -9,11 +9,38 @@ namespace WebdevProjectStarterTemplate.Pages.Rest
     {
         public int RTableId { get; set; }
         public List<OrderLine> orders = new();
+        public OrderLine order { get; set; } = new();
 
         public void OnGet()
         {
             RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
             orders = new OrderRepo().GetOrders(RTableId);
+        }
+        public IActionResult OnPost()
+        {
+            order.RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
+            int iterator = 1;
+            var rows = Request.Form;
+            foreach(var row in rows)
+            {
+                if (row.Key.Equals("__RequestVerificationToken"))
+                {
+                    break;
+                }
+                if (iterator % 2 == 1)
+                {
+                    order.AmountPaid= Convert.ToInt32(row.Value);
+                }
+
+
+                if (iterator % 2 == 0)
+                {
+                    order.ProductId= Convert.ToInt32(row.Value);
+                    new OrderRepo().Betaal(order);
+                }
+                iterator++;
+            }
+            return new RedirectResult("Alles betalen");
         }
     }
 }
