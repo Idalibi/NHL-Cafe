@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 using WebdevProjectStarterTemplate.Models;
 using WebdevProjectStarterTemplate.Repositories;
 
@@ -7,8 +8,9 @@ namespace WebdevProjectStarterTemplate.Pages;
 [BindProperties]
 public class registerModel : PageModel
 {
-    public CafeUser user { get; set; } = null!;
+    public CafeUser user { get; set; }
     public string id;
+
     public IActionResult OnGet()
     {
         id = HttpContext.Session.GetString("userID");

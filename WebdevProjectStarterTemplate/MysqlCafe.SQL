@@ -10,7 +10,7 @@ CREATE TABLE CafeUser
 (
     UniqueGuid  int             AUTO_INCREMENT PRIMARY KEY, -- het model komt uit staticuserrepo dus daarom heet dit Guid
     UserName    varchar(64)     NOT NULL UNIQUE,
-    Password    int             NOT NULL
+    Password    varchar(128)             NOT NULL
 );
 CREATE TABLE Category
 (

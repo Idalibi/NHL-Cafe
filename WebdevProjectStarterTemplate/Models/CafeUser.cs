@@ -16,4 +16,8 @@ public class CafeUser
 
     public string Location { get; set; } = "";
     public DateTime Date { get; set; }
+    [Required]
+    [Compare(nameof(Password), ErrorMessage = "niet hetzelfde")]
+    public string HerhaalWachtwoord { get; set; }
+
 }

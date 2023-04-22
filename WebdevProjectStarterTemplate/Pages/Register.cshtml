@@ -12,11 +12,11 @@
         <input asp-for="@Model.user.Password" class="form-control" placeholder="Wachtwoord" type="password"/>
         <span asp-validation-for="@Model.user.Password"></span>
     </div>
-   @* <div class="form-group">
-        <label>Herhaal wachtwoord</label>
-        <input class="form-control" placeholder="Herhaal wachtwoord" type="password" />
-        <span asp-validation-for="@Model.user.Password"></span>
-    </div>*@
+    <div class="form-group">
+        <label asp-for="user.HerhaalWachtwoord">Herhaal wachtwoord</label>
+        <input asp-for="user.HerhaalWachtwoord" class="form-control" placeholder="Herhaal wachtwoord" type="password" />
+        <span asp-validation-for="@Model.user.HerhaalWachtwoord"></span>
+    </div>
     <div class="form-group">
         <label>eMail</label>
         <input class="form-control" placeholder="email@email.com" asp-for="@Model.user.Email"/>
