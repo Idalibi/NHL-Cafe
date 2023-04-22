@@ -19,12 +19,17 @@ de geselecteerde tafel is @Model.RTableId
             foreach(var order in Model.orders)
             {
                 alles += order.Total;
+                <form method="post">
+                <input type="hidden" value="@order.Amount" name="Amount">
+                <input type="hidden" value="@order.ProductId" name="ProductId">
+
                 <tr>
                     <td>@order.Name</td>
-                    <td>@order.Amount</td>
+                    <td><button asp-page-handler="Decrement">-</button>@order.Amount<button asp-page-handler="Increment">+</button></td>
                     <td>@order.Price</td>
                     <td>@order.Total</td>
                 </tr>
+                </form>
             }
         }
     </tbody>
@@ -38,3 +43,5 @@ de geselecteerde tafel is @Model.RTableId
     </tfoot>
 </table>
 
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Rest/Alles betalen">Alles betalen</a>
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Rest/Per persoon betalen">Per persoon betalen</a>

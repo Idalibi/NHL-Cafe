@@ -10,6 +10,7 @@ namespace WebdevProjectStarterTemplate.Pages.Rest
     {
         public List<OrderLine> orders = new();
         public int RTableId { get; set; }
+        public OrderLine neworder { get; set; } = new();
 
         public void OnGet()
         {
@@ -18,6 +19,30 @@ namespace WebdevProjectStarterTemplate.Pages.Rest
             orders = new OrderRepo().GetOrders(RTableId);
 
 
+        }
+        public IActionResult OnPostIncrement() 
+        {
+            neworder.Amount = Convert.ToInt32(Request.Form["Amount"]);
+            neworder.ProductId = Convert.ToInt32(Request.Form["ProductId"]);
+
+            neworder.RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
+            neworder.Amount++;
+            new OrderRepo().UpdateOrder(neworder);
+            return new RedirectResult(" Overzicht");
+        }
+        public IActionResult OnPostDecrement()
+        {
+            neworder.Amount = Convert.ToInt32(Request.Form["Amount"]);
+            if (neworder.Amount > 0)
+            {
+
+                neworder.ProductId = Convert.ToInt32(Request.Form["ProductId"]);
+
+                neworder.RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
+                neworder.Amount--;
+                new OrderRepo().UpdateOrder(neworder);
+            }
+            return new RedirectResult("Overzicht");
         }
     }
 }
