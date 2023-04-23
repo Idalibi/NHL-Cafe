@@ -9,11 +9,19 @@ namespace WebdevProjectStarterTemplate.Pages.Rest
     {
         public int RTableId { get; set; }
         public List<OrderLine> orders = new();
+        string userid;
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            userid = HttpContext.Session.GetString("userID");
+            if (userid == null)
+            {
+                return new RedirectResult("../login");
+            }
+
             RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
             orders = new OrderRepo().GetOrders(RTableId);
+            return Page();
         }
         public IActionResult OnPost()
         {

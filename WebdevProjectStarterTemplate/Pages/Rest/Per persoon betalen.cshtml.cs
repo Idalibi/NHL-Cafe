@@ -10,11 +10,19 @@ namespace WebdevProjectStarterTemplate.Pages.Rest
         public int RTableId { get; set; }
         public List<OrderLine> orders = new();
         public OrderLine order { get; set; } = new();
+        string userid;
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
             orders = new OrderRepo().GetOrders(RTableId);
+            userid = HttpContext.Session.GetString("userID");
+            if (userid == null)
+            {
+                return new RedirectResult("../login");
+            }
+            return Page();
+
         }
         public IActionResult OnPost()
         {

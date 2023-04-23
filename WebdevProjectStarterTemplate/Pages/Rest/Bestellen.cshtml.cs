@@ -12,11 +12,19 @@ public class BestellenModel : PageModel
 {
     public OrderLine order = new();
     public IEnumerable<Category> CategoriesWithProduct { get; set; }
+    string userid;
 
-    public void OnGet()
+    public IActionResult OnGet()
     {
+        userid = HttpContext.Session.GetString("userID");
+        if (userid == null)
+        {
+            return new RedirectResult("../login");
+        }
+
         order.RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
         CategoriesWithProduct = new CategoryRepository().GetCategoriesWithProducts();
+        return Page();
     }
     public IActionResult OnPost()
     {
