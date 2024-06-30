@@ -2,15 +2,18 @@
 @model WebdevProjectStarterTemplate.Pages.Rest.OverzichtModel
 @{
 }
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <h1><b>Overzicht</b></h1>
-de geselecteerde tafel is @Model.RTableId
+<p>De geselecteerde tafel is <a style="font-weight: bold">@Model.RTableId</a></p>
 <table class="table table-striped">
     <thead>
         <tr>
-            <td><b>product</b></td>
-            <td><b>hoeveelheid</b></td>
-            <td><b>prijs</b></td>
-            <td><b>totaal</b></td>
+            <td><b>Product</b></td>
+            <td><b>Hoeveelheid</b></td>
+            <td><b>Prijs</b></td>
+            <td><b>Totaal</b></td>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +28,11 @@ de geselecteerde tafel is @Model.RTableId
 
                 <tr>
                     <td>@order.Name</td>
-                    <td><button asp-page-handler="Decrement">-</button>@order.Amount<button asp-page-handler="Increment">+</button></td>
+                    <td>
+                        <button class="btn btn-outline-dark btn-sm" asp-page-handler="Decrement">-</button>
+                        <a style="margin: 5px">@order.Amount</a>
+                        <button class="btn btn-outline-dark btn-sm" asp-page-handler="Increment">+</button>
+                    </td>
                     <td>@order.Price</td>
                     <td>@order.Total</td>
                 </tr>
@@ -43,5 +50,5 @@ de geselecteerde tafel is @Model.RTableId
     </tfoot>
 </table>
 
-                    <a class="nav-link text-dark" asp-area="" asp-page="/Rest/Alles betalen">Alles betalen</a>
-                    <a class="nav-link text-dark" asp-area="" asp-page="/Rest/Per persoon betalen">Per persoon betalen</a>
+<a class="btn btn-primary" asp-area="" asp-page="/Rest/Alles betalen">Alles betalen</a>
+<a class="btn btn-secondary" asp-area="" asp-page="/Rest/Per persoon betalen">Per persoon betalen</a>

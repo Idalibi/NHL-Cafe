@@ -3,55 +3,68 @@
 @{
 }
 <h1><b>Bestellen</b></h1>
-de geselecteerde tafel is @Model.order.RTableId
+<p>Deze bestelling is voor tafel: <a style="font-weight: bold">@Model.order.RTableId</a></p>
 
 <div class="container">
     <div class="row">
         <div class="col">
+            
+            @* Alle typen dranken in een lijstje printen op de pagina *@
+            <p style="font-weight: bold; margin-bottom: 10px">Type drank</p>
             <table class="table table-striped">
                 <thead>
                 </thead>
                 <tbody>
+
                     @foreach (var category in @Model.CategoriesWithProduct)
                     {
                         <tr>
-                            <td onclick="showCategory('@category.Name')">@category.Name</td>
+                            <td><button type="submit" class="btn btn-outline-dark" onclick="showCategory('@category.Name')">@category.Name</button></td>
                         </tr>
                     }
                 </tbody>
             </table>
+            
+            
         </div>
         <div class="col">
-
-            <table class="table table-striped">
-                <thead>
-
-                </thead>
-                <tbody>
-                @foreach (var category in @Model.CategoriesWithProduct)
-                {
-                    foreach (var product in category.Products)
-                    {
-                        <tr class="productsview @category.Name">
-                            <td >
-                            @product.Name 
-                            </td>
-                            <td>
-                                    <button onclick="addRow('@product.Name', '@product.ProductId')">+</button>
-                            </td>
-                        </tr>
+            @* Alles wat onder het type drank valt *@
+            <div class="d-flex justify-content-between" style="margin-bottom: -5px">
+                <p style="font-weight: bold; margin-bottom: 10px" class="col-1">Soorten</p>
+                <p style="font-weight: bold" class=" col-4">Prijs</p>
+            </div>
+            <div class="d-flex">
+                <table class="table table-striped">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    @foreach (var category in @Model.CategoriesWithProduct){
+                        foreach (var product in category.Products){
+                            <tr class="productsview @category.Name justify-content-between">
+                                <td class="p-2 flex-fill bd-highlight">
+                                    @product.Name
+                                </td>
+                                <td class="p-2 align-items-end">
+                                    €@product.Price,-
+                                </td>
+                                <td class="align-items-end">
+                                        <button class="btn btn-primary rounded-circle btn-sm row-cols-sm-1" onclick="addRow('@product.Name', '@product.ProductId')" style="font-weight: bold">+</button>
+                                </td>
+                            </tr>
+                        }
                     }
-                }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="col-6">
+            <p style="font-weight: bold; margin-bottom: 10px">Bestelling</p>
             <form method="post")>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <td><b>product</b></td>
-                        <td><b>amount</b></td>
+                        <td><b>Product</b></td>
+                        <td><b>Aantal</b></td>
                     </tr>
                 </thead>
                 <tbody id="ordertable">
@@ -59,8 +72,7 @@ de geselecteerde tafel is @Model.order.RTableId
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td></td>
-                        <td><input type="submit" /></td>
+                        <td> <button type="submit" class="btn btn-primary" style="margin-top: 10px">Versturen</button></td>                       
                     </tr>
                 </tfoot>
             </table>
@@ -77,8 +89,12 @@ de geselecteerde tafel is @Model.order.RTableId
         if (!element) {
         var newRow = document.createElement("tr");
         newRow.id = id;
-            newRow.innerHTML = `<td>${product}</td><td><button type="button" onclick="decreaseAmount(${id})">-</button> <div id ="amount${id}">1</div>  <button type="button" onclick="increaseAmount(${id})">+</button>    <input type="hidden" name="orderid${id}" value="${id}"> <input id ="order${id}" type="hidden" name="orderamount${id}" value="1"></td>`;
-        document.getElementById("ordertable").appendChild(newRow);
+            newRow.innerHTML = `<td>${product}</td>
+            <td><button type="button" class="btn btn-dark rounded-circle btn-sm" style="font-weight: bold" onclick="decreaseAmount(${id})">-</button><a id ="amount${id}"style="margin: 5px">1</a><button type="button" class="btn btn-dark rounded-circle btn-sm" style="font-weight: bold" onclick="increaseAmount(${id})">+</button><input type="hidden" name="orderid${id}" value="${id}"> <input id ="order${id}" type="hidden" name="orderamount${id}" value="1"></td>`;
+
+            
+            
+            document.getElementById("ordertable").appendChild(newRow);
         }
         else {
             increaseAmount(id);
@@ -110,7 +126,9 @@ de geselecteerde tafel is @Model.order.RTableId
         var amountid = `amount${id}`
         var newid = `order${id}`;
         var element = document.getElementById(newid)
-        if (element.value < 2){}
+        if (element.value < 2){
+            element.parentElement.parentElement.remove();
+        }
         else {
         element.value = Number(element.value) - 1
 
@@ -119,9 +137,8 @@ de geselecteerde tafel is @Model.order.RTableId
         }
     }
     function deleteOrder(id){
-
+        hideAllProducts();
     }
-    hideAllProducts();
     showCategory(' Bier');
 
 </script>

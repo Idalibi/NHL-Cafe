@@ -3,15 +3,15 @@
 @{
 }
 <h1><b>Rekening</b></h1>
-de geselecteerde tafel is @Model.RTableId
+<p>De rekening voor tafel: <a style="font-weight: bold">@Model.RTableId</a></p>
 <form method="post">
 <table class="table table-striped">
     <thead>
         <tr>
-            <td><b>product</b></td>
-            <td><b>betaald</b></td>
-            <td><b>prijs per stuk</b></td>
-            <td><b>totaal</b></td>
+            <td><b>Product</b></td>
+            <td><b>Betaald</b></td>
+            <td><b>Prijs per stuk</b></td>
+            <td><b>Totaal</b></td>
         </tr>
     </thead>
     <tbody>
@@ -38,5 +38,6 @@ de geselecteerde tafel is @Model.RTableId
         </tr>
     </tfoot>
 </table>
-<button>betaal</button>
+    <button class="btn btn-danger">Betaal</button>
+    <a class="btn btn-secondary" asp-area="" asp-page="/Rest/Per persoon betalen">Per persoon betalen</a>
 </form>

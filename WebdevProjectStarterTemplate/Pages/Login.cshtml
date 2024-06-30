@@ -1,13 +1,28 @@
 @page
 @model loginModel
 
+<h1>Login</h1>
+
 <form method="post">
-    Naam:<input asp-for="@Model.loginuser.UserName"><br />
-    wachtwoord:<input asp-for="@Model.loginuser.Password" type="password"><br   />
+    <div class="form-group" style="margin-top: 10px">
+        <label asp-for="@Model.loginuser.UserName">Naam</label>
+        <input asp-for="@Model.loginuser.UserName" class="form-control" placeholder="Gebruikersnaam" />
+        <span asp-validation-for="@Model.loginuser.UserName"></span>
+    </div>
+    <div class="form-group" style="margin-top: 10px">
+        <label asp-for="@Model.loginuser.Password">Wachtwoord</label>
+        <input asp-for="@Model.loginuser.Password" class="form-control" placeholder="Wachtwoord" type="password" />
+        <span asp-validation-for="@Model.loginuser.Password"></span>
+    </div>
 
 
-
-    <input type ="submit" value="log in">
+    <button type="submit" class="btn btn-primary" style="margin-top: 10px">Login</button>
+    @*<input type ="submit" value="log in">*@
 </form>
 
-<a href="Register">of register</a>
+<div style="margin-top: 10px">
+    <a>Nog geen account? Maak </a>
+    <a href="Register">hier</a>
+    <a> een nieuwe aan!</a>
+
+</div>

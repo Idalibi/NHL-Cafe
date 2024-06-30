@@ -43,13 +43,20 @@ namespace WebdevProjectStarterTemplate.Pages.Rest
             neworder.Amount = Convert.ToInt32(Request.Form["Amount"]);
             if (neworder.Amount > 0)
             {
-
                 neworder.ProductId = Convert.ToInt32(Request.Form["ProductId"]);
-
                 neworder.RTableId = Convert.ToInt32(Request.Cookies["RTableId"]);
                 neworder.Amount--;
                 new OrderRepo().UpdateOrder(neworder);
             }
+            if (neworder.Amount == 0)
+            {
+                //TODO: remove row
+                neworder.ProductId = 0;
+                neworder.RTableId = 0;
+                orders.Remove(neworder);
+                new OrderRepo().UpdateOrder(neworder);
+            }
+
             return new RedirectResult("Overzicht");
         }
     }

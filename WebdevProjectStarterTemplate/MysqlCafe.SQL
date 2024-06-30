@@ -43,9 +43,9 @@ CREATE TABLE OrderLIne
     FOREIGN KEY (ProductId) REFERENCES Product(ProductId) ON DELETE CASCADE,
     FOREIGN KEY (RTableId) REFERENCES RTable (RTableId) ON DELETE CASCADE
 );
-INSERT INTO CafeUser (UserName, Password) VALUES ('Rik', 123);
+INSERT INTO CafeUser (UserName, Password) VALUES ('admin', 'admin');
 
-INSERT INTO RTable (Name) VALUES ('TAFEL 1'),('TAFEL 2'),('TAFEL 3'),('TAFEL 4');
+INSERT INTO RTable (Name) VALUES ('Tafel 1'),('Tafel 2'),('Tafel 3'),('Tafel 4'),('Tafel 5'),('Tafel 6'),('Tafel 7'),('Tafel 8'),('Tafel 9'),('Tafel 10'),('Tafel 11'),('Tafel 12');
 
 INSERT INTO Category (Name) VALUES ('Frisdranken');
 INSERT INTO Category (Name) VALUES ('Bier');

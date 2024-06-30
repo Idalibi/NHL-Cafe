@@ -12,6 +12,7 @@ public class BestellenModel : PageModel
 {
     public OrderLine order = new();
     public IEnumerable<Category> CategoriesWithProduct { get; set; }
+    public string categorie;
     string userid;
 
     public IActionResult OnGet()

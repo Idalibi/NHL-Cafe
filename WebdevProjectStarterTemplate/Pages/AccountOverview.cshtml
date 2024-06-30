@@ -1,17 +1,20 @@
 @page
 @model overviewModel
 
-Welkom, @Model.user.UserName!
+<h1 style="font-weight: bold">Welkom, @Model.user.UserName!</h1>
 
-Selecteer een tafel:
+<h2>Selecteer een tafel:</h2>
 <form method="post">
 @{
     foreach (var x in @Model.tables)
     {
-            @x.Name <input type="radio" id="@x.RTableId"value="@x.RTableId" name="tableselect" asp-for="RTableId">
-
+        <label class="form-check-label" for="flexRadioDefault1" style="margin-right: 5px">
+            @x.Name
+        </label>
+        <input class="form-check-input" type="radio" id="@x.RTableId" value="@x.RTableId" name="tableselect" asp-for="RTableId">
+            
             <br />
     }
 }
-<input type="submit" value="selecteer"/>
+    <button type="submit" class="btn btn-primary">Selecteer</button>
 </form>

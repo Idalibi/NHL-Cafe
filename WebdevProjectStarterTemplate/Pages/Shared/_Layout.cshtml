@@ -20,18 +20,23 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/AccountOverview">Tafels</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Rest/Bestellen">Bestellen</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Rest/Overzicht">Overzicht</a>
                     </li>
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Rest/Alles betalen">Alles betalen</a>
-                    </li>
-                    <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Rest/Per persoon betalen">Per persoon betalen</a>
+                        <a class="nav-link text-dark" asp-area="" asp-page="Logout">Log uit</a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </nav>

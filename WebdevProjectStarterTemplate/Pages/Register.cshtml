@@ -1,31 +1,38 @@
 @page
 @model registerModel
 
+<h1>Aanmelden</h1>
+<p>Maak hier uw nieuwe account aan</p>
+
 <form method="post">
-    <div class="form-group">
+    <div class="form-group" style="margin-top: 10px">
         <label asp-for="@Model.user.UserName" >Naam</label>
         <input asp-for="@Model.user.UserName" class="form-control" placeholder="Gebruikersnaam" />
         <span asp-validation-for="@Model.user.UserName"></span>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="margin-top: 10px">
         <label asp-for="@Model.user.Password">Wachtwoord</label>
         <input asp-for="@Model.user.Password" class="form-control" placeholder="Wachtwoord" type="password"/>
         <span asp-validation-for="@Model.user.Password"></span>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="margin-top: 10px">
         <label asp-for="user.HerhaalWachtwoord">Herhaal wachtwoord</label>
         <input asp-for="user.HerhaalWachtwoord" class="form-control" placeholder="Herhaal wachtwoord" type="password" />
         <span asp-validation-for="@Model.user.HerhaalWachtwoord"></span>
     </div>
-    <div class="form-group">
-        <label>eMail</label>
+    <div class="form-group" style="margin-top: 10px">
+        <label>Email</label>
         <input class="form-control" placeholder="email@email.com" asp-for="@Model.user.Email"/>
         <span asp-validation-for="@Model.user.Email"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-primary" style="margin-top: 10px">Meld aan</button>
 
 
 </form>
-
-        <a href="Login">of login</a>
+<div style="margin-top: 10px">
+    <a>Heb je al een account? Log </a>
+    <a href="Login">hier</a>
+    <a> dan in!</a>
+</div>
+        

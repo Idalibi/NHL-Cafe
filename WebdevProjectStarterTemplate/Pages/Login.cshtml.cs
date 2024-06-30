@@ -11,6 +11,7 @@ public class loginModel : PageModel
     public string sessionID { get; set; }
     public IActionResult OnGet()
     {
+        HttpContext.Session.Clear();
         sessionID = HttpContext.Session.GetString("userID");
         if (sessionID != null)
         {

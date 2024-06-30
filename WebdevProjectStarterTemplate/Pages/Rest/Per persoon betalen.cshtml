@@ -3,15 +3,15 @@
 @{
 }
 <h1><b>Per persoon betalen</b></h1>
-de geselecteerde tafel is @Model.RTableId
+<p>de geselecteerde tafel is <a style="font-weight: bold">@Model.RTableId</a></p>
 <form method="post">
 <table class="table table-striped">
     <thead>
         <tr>
             <td><b>product</b></td>
-            <td><b>aantal</b></td>
-            <td><b>prijs</b></td>
-            <td><b>totaal</b></td>
+            <td><b>Aantal</b></td>
+            <td><b>Prijs</b></td>
+            <td><b>Totaal</b></td>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +27,9 @@ de geselecteerde tafel is @Model.RTableId
                 <tr>
                     <td>@order.Name</td>
                     <td>
-                        <button type="button" onclick="decrease('@order.Name')">-</button><div class="@order.Name">0</div><button type="button" onclick="increase('@order.Name')">+</button> van de @(@order.Amount-@order.AmountPaid)
+                            <button type="button" class="btn btn-outline-dark" onclick="decrease('@order.Name')">-</button>
+                            <a style="margin: 5px" class="@order.Name">0</a>
+                            <button type="button" class="btn btn-outline-dark" onclick="increase('@order.Name')">+</button> van de @(@order.Amount - @order.AmountPaid)
                         <input type="hidden" value="0" class="@order.Name" name="@ProductName">
                         <input type="hidden" value="@order.ProductId" name="@AmountName">
                     </td>
@@ -48,7 +50,7 @@ de geselecteerde tafel is @Model.RTableId
         </tr>
     </tfoot>
 </table>
-<button>betaal</button>
+    <button class="btn btn-danger">Betaal</button>
 </form>
 
 <script>
